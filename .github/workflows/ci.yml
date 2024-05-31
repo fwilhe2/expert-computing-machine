@@ -7,36 +7,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - bash
+          - systemd
+          - coreutils
+          - wolfi-base
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
       with:
-        config: "systemd.yaml"
+        config: "${{ matrix.package }}.yaml"
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
-        repository-path: ${{ github.workspace }}/packages/systemd
-
-    - uses: chainguard-dev/actions/melange-build@main
-      with:
-        config: "bash.yaml"
-        repository-append: "https://packages.wolfi.dev/os"
-        keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
-        repository-path: ${{ github.workspace }}/packages/bash
-
-    - uses: chainguard-dev/actions/melange-build@main
-      with:
-        config: "coreutils.yaml"
-        repository-append: "https://packages.wolfi.dev/os"
-        keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
-        repository-path: ${{ github.workspace }}/packages/coreutils
-
-    - uses: chainguard-dev/actions/melange-build@main
-      with:
-        config: "wolfi-base.yaml"
-        repository-append: "https://packages.wolfi.dev/os"
-        keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
-        repository-path: ${{ github.workspace }}/packages/base
-
+        repository-path: ${{ github.workspace }}/packages/${{ matrix.package }}
 
     - run: find .
     - name: Upload a Build Artifact
