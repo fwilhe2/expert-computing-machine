@@ -28,3 +28,11 @@ jobs:
       with:
         name: ${{ matrix.package }}
         path: ${{ github.workspace }}/packages/${{ matrix.package }}
+  rootfs:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/download-artifact@v4
+    - name: Display structure of downloaded files
+      run: ls -R
