@@ -40,45 +40,6 @@ pipeline:
 
   - uses: strip
 
-subpackages:
-  - name: bash-binsh
-    dependencies:
-      provider-priority: 60
-      runtime:
-        - bash
-    pipeline:
-      - runs: |
-          mkdir -p "${{targets.subpkgdir}}"/bin
-          ln -s bash "${{targets.subpkgdir}}"/bin/sh
-    test:
-      pipeline:
-        - runs: |
-            [ /bin/sh -ef /bin/bash ] || { echo "/bin/sh is not same as /bin/bash"; exit 1; }
-
-  - name: "bash-doc"
-    description: "bash documentation"
-    pipeline:
-      - uses: split/manpages
-      - uses: split/infodir
-      - runs: |
-          mkdir -p "${{targets.subpkgdir}}"/usr/share
-          mv "${{targets.destdir}}"/usr/share/doc "${{targets.subpkgdir}}"/usr/share/
-
-  - name: "bash-dev"
-    description: "bash development headers"
-    pipeline:
-      - uses: split/dev
-      - runs: |
-          mkdir -p "${{targets.subpkgdir}}"/bin
-          mv "${{targets.destdir}}"/bin/bashbug "${{targets.subpkgdir}}"/bin/
-
-  - name: "bash-builtins"
-    description: "bash loadable builtins"
-    pipeline:
-      - runs: |
-          mkdir -p ${{targets.subpkgdir}}/usr/lib
-          mv "${{targets.destdir}}/usr/lib/bash" ${{targets.subpkgdir}}/usr/lib/
-
 update:
   enabled: true
   release-monitor:

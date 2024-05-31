@@ -45,19 +45,6 @@ pipeline:
       mkdir -p ${{targets.destdir}}/lib
       mv ${{targets.destdir}}/usr/lib/libsystemd.so* ${{targets.destdir}}/lib/
 
-subpackages:
-  - name: "systemd-dev"
-    description: "headers for systemd"
-    pipeline:
-      - uses: split/dev
-
-  - name: "libsystemd"
-    description: "systemd library"
-    pipeline:
-      - runs: |
-          mkdir -p ${{targets.subpkgdir}}/lib
-          mv ${{targets.destdir}}/lib/libsystemd.so.* ${{targets.subpkgdir}}/lib
-
 update:
   enabled: true
   github:
