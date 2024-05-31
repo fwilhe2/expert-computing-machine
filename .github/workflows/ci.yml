@@ -10,3 +10,8 @@ jobs:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
     - run: find .
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        path: packages/x86_64
+          
