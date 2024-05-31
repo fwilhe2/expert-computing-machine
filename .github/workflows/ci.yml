@@ -11,7 +11,6 @@ jobs:
     - uses: chainguard-dev/actions/melange-build@main
       with:
         multi-config: "bash.yaml,coreutils.yaml,systemd.yaml,wolfi-base.yaml"
-        namespace: fwilhe
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
     - run: find .
