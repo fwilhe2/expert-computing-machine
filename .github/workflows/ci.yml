@@ -14,24 +14,28 @@ jobs:
         config: "systemd.yaml"
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+        repository-path: ${{ github.workspace }}/packages/systemd
 
     - uses: chainguard-dev/actions/melange-build@main
       with:
         config: "bash.yaml"
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+        repository-path: ${{ github.workspace }}/packages/bash
 
     - uses: chainguard-dev/actions/melange-build@main
       with:
         config: "coreutils.yaml"
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+        repository-path: ${{ github.workspace }}/packages/coreutils
 
     - uses: chainguard-dev/actions/melange-build@main
       with:
         config: "wolfi-base.yaml"
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+        repository-path: ${{ github.workspace }}/packages/base
 
 
     - run: find .
