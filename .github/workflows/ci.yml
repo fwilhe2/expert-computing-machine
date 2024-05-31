@@ -23,9 +23,9 @@ jobs:
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
         repository-path: ${{ github.workspace }}/packages/${{ matrix.package }}
-
-    - run: find .
+    - run: find ${{ github.workspace }}/packages/${{ matrix.package }}
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
-        path: packages
+        name: ${{ matrix.package }}
+        path: ${{ github.workspace }}/packages/${{ matrix.package }}
