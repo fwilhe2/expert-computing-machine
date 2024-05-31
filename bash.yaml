@@ -5,15 +5,9 @@ package:
   description: "GNU bourne again shell"
   copyright:
     - license: GPL-3.0-or-later
-  target-architecture:
-    - x86_64
 
 environment:
   contents:
-    repositories:
-      - https://packages.wolfi.dev/os
-    keyring:
-      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
     packages:
       - build-base
       - busybox
