@@ -1,0 +1,48 @@
+package:
+  name: coreutils
+  version: "9.5"
+  epoch: 2
+  description: "GNU core utilities"
+  copyright:
+    - license: GPL-3.0-or-later
+
+environment:
+  contents:
+    packages:
+      - acl-dev
+      - attr-dev
+      - build-base
+      - ca-certificates-bundle
+      - openssl-dev
+      - texinfo
+      - wolfi-base
+
+pipeline:
+  - uses: fetch
+    with:
+      uri: https://ftp.gnu.org/gnu/coreutils/coreutils-${{package.version}}.tar.xz
+      expected-sha256: cd328edeac92f6a665de9f323c93b712af1858bc2e0d88f3f7100469470a1b8a
+
+  - runs: |
+      env FORCE_UNSAFE_CONFIGURE=1 ./configure \
+         --prefix=/usr \
+         --libdir=/lib \
+         --libexecdir=/usr/libexec \
+         --sysconfdir=/etc \
+         --mandir=/usr/share/man \
+         --infodir=/usr/share/info \
+         --disable-nls \
+         --enable-no-install-program=hostname,su,kill,uptime,groups \
+         --with-openssl=auto-gpl-compat \
+         --enable-single-binary=symlinks
+
+  - uses: autoconf/make
+
+  - uses: autoconf/make-install
+
+  - uses: strip
+
+update:
+  enabled: true
+  release-monitor:
+    identifier: 343
