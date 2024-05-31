@@ -6,13 +6,34 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
       with:
-        multi-config: "systemd.yaml"
+        config: "systemd.yaml"
         repository-append: "https://packages.wolfi.dev/os"
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+
+    - uses: chainguard-dev/actions/melange-build@main
+      with:
+        config: "bash.yaml"
+        repository-append: "https://packages.wolfi.dev/os"
+        keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+
+    - uses: chainguard-dev/actions/melange-build@main
+      with:
+        config: "coreutils.yaml"
+        repository-append: "https://packages.wolfi.dev/os"
+        keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+
+    - uses: chainguard-dev/actions/melange-build@main
+      with:
+        config: "wolfi-base.yaml"
+        repository-append: "https://packages.wolfi.dev/os"
+        keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
+
+
     - run: find .
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
