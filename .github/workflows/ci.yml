@@ -38,7 +38,7 @@ jobs:
       run: ls -R
     - run: mkdir rootfs
     # https://gist.github.com/stokito/4901a4b76834a8d1ec33f70d70785e67
-    - run: find . -name '*.apk' -exec tar -xzf {} -C rootfs --exclude=.PKGINFO --exclude=.SIGN* \;
+    - run: find . -name '*.apk' -exec tar -xzvf {} -C rootfs --exclude=.PKGINFO --exclude=.SIGN* \;
     - run: tar cf rootfs.tar rootfs
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
