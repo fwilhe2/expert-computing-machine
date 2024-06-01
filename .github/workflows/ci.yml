@@ -15,7 +15,7 @@ jobs:
           - systemd
           - coreutils
     steps:
-    - uses: actions/checkout@v4
+    - uses: actio ns/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
       with:
         config: "${{ matrix.package }}.yaml"
@@ -36,3 +36,11 @@ jobs:
     - uses: actions/download-artifact@v4
     - name: Display structure of downloaded files
       run: ls -R
+    - run: mkdir rootfs
+    - run: find . -name '*.apk' -exec tar -xzf {} -C rootfs --exclude=.PKGINFO --exclude=.SIGN* \;
+    - run: tar cf rootfs.tar rootfs
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: rootfs
+        path: rootfs.tar
