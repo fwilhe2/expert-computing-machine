@@ -41,14 +41,14 @@ jobs:
     - run: find . -name '*.apk' -exec tar -xzvf {} -C rootfs --exclude=.PKGINFO --exclude=.SIGN* \;
     - run: cp os-release rootfs/etc
     - run: ls -lR rootfs
-    - run: dd if=/dev/zero of=rootfs.raw bs=1M count=200
+    - run: dd if=/dev/zero of=rootfs.raw bs=1M count=500
     - run: mkfs.ext4 -L root rootfs.raw
     - run: |
         loop_device=$(sudo losetup --show -f rootfs.raw)
         mount_dir=$(mktemp -d)
         sudo mount $loop_device $mount_dir
         find . -name '*.apk' -exec sudo tar -xzvf {} -C $mount_dir --exclude=.PKGINFO --exclude=.SIGN* \;
-        cp os-release $mount_dir/etc/os-release
+        sudo cp os-release $mount_dir/etc/os-release
         sync
         sudo umount $mount_dir
         sudo losetup -D
