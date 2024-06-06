@@ -39,9 +39,27 @@ jobs:
     - run: mkdir rootfs
     # https://gist.github.com/stokito/4901a4b76834a8d1ec33f70d70785e67
     - run: find . -name '*.apk' -exec tar -xzvf {} -C rootfs --exclude=.PKGINFO --exclude=.SIGN* \;
+    - run: cp os-release rootfs/etc
+    - run: ls -lR rootfs
+    - run: dd if=/dev/zero of=rootfs.raw bs=1M count=200
+    - run: mkfs.ext4 -L root rootfs.raw
+    - run: |
+        loop_device=$(sudo losetup --show -f rootfs.raw)
+        mount_dir=$(mktemp -d)
+        sudo mount $loop_device $mount_dir
+        find . -name '*.apk' -exec tar -xzvf {} -C $mount_dir --exclude=.PKGINFO --exclude=.SIGN* \;
+        cp os-release $mount_dir/etc/os-release
+        sync
+        sudo umount $mount_dir
+        sudo losetup -D
     - run: tar cf rootfs.tar rootfs
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
-        name: rootfs
+        name: rootfs-tar
         path: rootfs.tar
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: rootfs-raw
+        path: rootfs.raw
