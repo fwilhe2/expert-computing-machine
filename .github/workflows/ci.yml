@@ -40,8 +40,8 @@ jobs:
     - run: mkdir -p repo/x86_64
     - run: find . -name '*.apk' -exec cp {} repo/x86_64 \;
     - run: mkdir apk-index-temp
-    - run: find . -name '*/APKINDEX.tar.gz' -exec tar xf {} \;
-    - run: find . -name '*/APKINDEX' -exec cat {} >> apk-index-temp/APKINDEX \;
+    - run: find . -name 'APKINDEX.tar.gz' -exec tar xf {} \;
+    - run: find . -name 'APKINDEX' -exec cat {} >> apk-index-temp/APKINDEX \;
     - run: touch apk-index-temp/DESCRIPTION
     - run: cat apk-index-temp/APKINDEX
     - run: cd apk-index-temp; tar czf APKINDEX.tar.gz APKINDEX DESCRIPTION
