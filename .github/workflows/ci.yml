@@ -37,17 +37,18 @@ jobs:
     - uses: actions/download-artifact@v4
     - name: Display structure of downloaded files
       run: ls -R
-    - run: mkdir repo
-    - run: find . -name '*.apk' -exec cp {} repo \;
+    - run: mkdir -p repo/x86_64
+    - run: find . -name '*.apk' -exec cp {} repo/x86_64 \;
     - run: mkdir apk-index-temp
     - run: find . -name '*/APKINDEX.tar.gz' -exec tar xf {} \;
     - run: find . -name '*/APKINDEX' -exec cat {} >> apk-index-temp/APKINDEX \;
     - run: touch apk-index-temp/DESCRIPTION
     - run: cd apk-index-temp; tar cf APKINDEX.tar.gz APKINDEX DESCRIPTION
     - run: python3 .github/workflows/merge-apk-index.py
-    - run: cp apk-index-temp/APKINDEX.tar.gz repo
+    - run: cp apk-index-temp/APKINDEX.tar.gz repo/x86_64
     - run: |
         cd repo
+        find .
         python3 -m http.server &
     - run: |
         docker pull cgr.dev/chainguard/apko
