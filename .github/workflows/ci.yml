@@ -39,7 +39,7 @@ jobs:
       run: ls -R
     - run: mkdir repo
     - run: find . -name '*.apk' -exec cp {} repo \;
-    - run: make apk-index-temp
+    - run: mkdir apk-index-temp
     - run: find . -name '*/APKINDEX.tar.gz' -exec tar xf {} \;
     - run: find . -name '*/APKINDEX' -exec cat {} >> apk-index-temp/APKINDEX \;
     - run: touch apk-index-temp/DESCRIPTION
