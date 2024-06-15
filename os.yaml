@@ -1,0 +1,13 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  repositories:
+    - http://localhost:8000
+  packages:
+    - bash
+    - coreutils
+    - systemd
+    - linux-kernel
+
+archs:
+- x86_64
