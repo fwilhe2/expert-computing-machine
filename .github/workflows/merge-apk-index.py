@@ -1,5 +1,6 @@
 import glob
 import json
+from pathlib import Path
 
 # based on https://stackoverflow.com/a/52879570
 # todo: see how this can be done with proper melange tooling
@@ -28,8 +29,7 @@ apk_index_files = glob.glob("**/APKINDEX", recursive=True)
 output_list = []
 
 for f in apk_index_files:
-    with open(f, "rb") as infile:
-        output_list.append(infile)
+    output_list.append(Path(f).read_text())
 
 merged = '\n'.join(output_list)
 
