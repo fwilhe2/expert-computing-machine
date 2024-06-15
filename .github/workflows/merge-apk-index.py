@@ -9,6 +9,7 @@ apk_index_files_json = glob.glob("**/APKINDEX.json", recursive=True)
 output_list_json = []
 
 for f in apk_index_files_json:
+    print(f)
     with open(f, "rb") as infile:
         output_list_json.append(json.load(infile))
 
@@ -26,12 +27,14 @@ textfile_merged_json.write(json.dumps(merged_apk_index_json))
 
 
 apk_index_files = glob.glob("**/APKINDEX", recursive=True)
-output_list = []
+
+out = ''
 
 for f in apk_index_files:
-    output_list.append(Path(f).read_text())
+    print(f)
+    out = out + Path(f).read_text() + '\n'
 
-merged = '\n'.join(output_list)
+print(out)
 
 textfile_merged = open('apk-index-temp/APKINDEX', 'w')
-textfile_merged.write(merged)
+textfile_merged.write(out)
