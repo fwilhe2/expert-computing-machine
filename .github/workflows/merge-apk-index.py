@@ -18,5 +18,5 @@ for json_file in output_list:
 
 merged_apk_index['Packages'] = all_packages
 
-textfile_merged = open('repo/APKINDEX.json', 'w')
+textfile_merged = open('repo/x86_64/APKINDEX.json', 'w')
 textfile_merged.write(json.dumps(merged_apk_index))

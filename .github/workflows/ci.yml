@@ -46,6 +46,11 @@ jobs:
     - run: cd apk-index-temp; tar cf APKINDEX.tar.gz APKINDEX DESCRIPTION
     - run: python3 .github/workflows/merge-apk-index.py
     - run: cp apk-index-temp/APKINDEX.tar.gz repo/x86_64
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: repo
+        path: repo
     - run: |
         cd repo
         find .
