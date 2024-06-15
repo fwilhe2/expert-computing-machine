@@ -43,7 +43,8 @@ jobs:
     - run: find . -name '*/APKINDEX.tar.gz' -exec tar xf {} \;
     - run: find . -name '*/APKINDEX' -exec cat {} >> apk-index-temp/APKINDEX \;
     - run: touch apk-index-temp/DESCRIPTION
-    - run: cd apk-index-temp; tar cf APKINDEX.tar.gz APKINDEX DESCRIPTION
+    - run: cat apk-index-temp/APKINDEX
+    - run: cd apk-index-temp; tar czf APKINDEX.tar.gz APKINDEX DESCRIPTION
     - run: python3 .github/workflows/merge-apk-index.py
     - run: cp apk-index-temp/APKINDEX.tar.gz repo/x86_64
     - name: Upload a Build Artifact
