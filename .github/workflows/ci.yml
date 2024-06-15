@@ -45,7 +45,7 @@ jobs:
     - run: touch apk-index-temp/DESCRIPTION
     - run: cd apk-index-temp; tar cf APKINDEX.tar.gz APKINDEX DESCRIPTION
     - run: python3 .github/workflows/merge-apk-index.py
-    - run: cp apk-index-temp/APKINDEX.tar.tz repo
+    - run: cp apk-index-temp/APKINDEX.tar.gz repo
     - run: |
         cd repo
         python3 -m http.server &
