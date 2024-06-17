@@ -7,14 +7,14 @@ package:
     - license: MIT
   dependencies:
     runtime:
-      - bash
-      - coreutils
+      - apk-tools
+      - busybox
+      - wolfi-keys
 
 environment:
   contents:
     packages:
-      - bash
-      - coreutils
+      - busybox
 
 pipeline:
   - name: Install
