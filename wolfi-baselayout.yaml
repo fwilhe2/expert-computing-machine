@@ -1,0 +1,30 @@
+package:
+  name: wolfi-baselayout
+  version: 20230201
+  epoch: 11
+  description: "baselayout data for Wolfi"
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - ca-certificates-bundle
+
+environment:
+  contents:
+    packages:
+      - busybox
+      - wolfi-baselayout
+
+pipeline:
+  - name: Install
+    runs: |
+      for i in bin etc etc/profile.d etc/secfixes.d home lib root var/log usr/bin usr/sbin usr/local/lib tmp var/spool/cron opt run usr/lib; do
+        mkdir -p "${{targets.destdir}}"/${i}
+      done
+
+      for i in lib64 usr/lib64 usr/local/lib64; do
+        ln -s lib "${{targets.destdir}}"/${i}
+      done
+
+update:
+  enabled: false

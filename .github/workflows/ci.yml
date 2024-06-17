@@ -17,6 +17,8 @@ jobs:
           - linux-kernel
           - glibc
           - ncurses
+          - wolfi-base
+          - wolfi-baselayout
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
