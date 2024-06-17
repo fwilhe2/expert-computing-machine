@@ -28,9 +28,9 @@ jobs:
         keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
         repository-path: ${{ github.workspace }}/packages/${{ matrix.package }}
     - run: find ${{ github.workspace }}/packages/${{ matrix.package }}
-    - run: tar xzf ${{ github.workspace }}/packages/${{ matrix.package }}/APKINDEX.tar.gz -C ${{ github.workspace }}/packages/${{ matrix.package }}
-    - run: cat ${{ github.workspace }}/packages/${{ matrix.package }}/APKINDEX
-    - run: cat ${{ github.workspace }}/packages/${{ matrix.package }}/APKINDEX.json
+    - run: tar xzf ${{ github.workspace }}/packages/${{ matrix.package }}/x86_64/APKINDEX.tar.gz -C ${{ github.workspace }}/packages/x86_64/${{ matrix.package }}
+    - run: cat ${{ github.workspace }}/packages/${{ matrix.package }}/x86_64/APKINDEX
+    - run: cat ${{ github.workspace }}/packages/${{ matrix.package }}/x86_64/APKINDEX.json
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
