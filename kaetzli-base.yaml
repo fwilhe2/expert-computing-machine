@@ -1,0 +1,24 @@
+package:
+  name: kaetzli-base
+  version: 1
+  epoch: 6
+  description: "Kaetzli base metapackage"
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - bash
+      - coreutils
+
+environment:
+  contents:
+    packages:
+      - coreutils
+
+pipeline:
+  - name: Install
+    runs: |
+      mkdir -p "${{targets.destdir}}"
+
+update:
+  enabled: false

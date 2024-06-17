@@ -16,7 +16,7 @@ environment:
       - ca-certificates-bundle
       - openssl-dev
       - texinfo
-      - wolfi-base
+      - kaetzli-base
 
 pipeline:
   - uses: fetch

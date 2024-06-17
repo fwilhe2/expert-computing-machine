@@ -1,0 +1,40 @@
+package:
+  name: kaetzli-baselayout
+  version: 20230201
+  epoch: 11
+  description: "baselayout data for Kaetzli"
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - ca-certificates-bundle
+
+environment:
+  contents:
+    packages:
+      - busybox
+      - kaetzli-baselayout
+
+pipeline:
+
+  - name: Install
+    runs: |
+      for i in bin etc etc/profile.d etc/secfixes.d home lib root var/log usr/bin usr/sbin usr/local/lib tmp var/spool/cron opt run usr/lib; do
+        mkdir -p "${{targets.destdir}}"/${i}
+      done
+
+      for i in lib64 usr/lib64 usr/local/lib64; do
+        ln -s lib "${{targets.destdir}}"/${i}
+      done
+
+  - name: Generate /etc/os-release
+    runs: |
+      cat >"${{targets.destdir}}"/etc/os-release <<EOF
+      ID=kaetzli
+      NAME="Kaetzli"
+      PRETTY_NAME="Kaetzli"
+      VERSION_ID="${{package.version}}"
+      EOF
+
+update:
+  enabled: false

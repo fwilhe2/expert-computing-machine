@@ -16,7 +16,7 @@ environment:
       - flex
       - bison
       - bc
-      - wolfi-baselayout
+      - kaetzli-baselayout
 
 pipeline:
   - uses: git-checkout

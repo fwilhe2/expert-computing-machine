@@ -10,13 +10,13 @@ package:
     memory: 16Gi
   dependencies:
     runtime:
-      # This prevents Alpine users from being able to `apk add` any Wolfi packages
+      # This prevents Alpine users from being able to `apk add` any Kaetzli packages
       # that depend on glibc, if they happen to have configured both repositories.
       # Only apk-tools respects this constraint; apko-based tools don't respect
       # the ! constraint.
       - '!musl'
       - glibc-locale-posix
-      - wolfi-baselayout
+      - kaetzli-baselayout
   scriptlets:
     trigger:
       paths:
@@ -41,7 +41,7 @@ environment:
       - python3
       - rdfind
       - texinfo
-      - wolfi-baselayout
+      - kaetzli-baselayout
       - zlib
 
 pipeline:
@@ -142,7 +142,7 @@ subpackages:
     dependencies:
       provider-priority: 10
       runtime:
-        - wolfi-baselayout
+        - kaetzli-baselayout
 
   - name: "glibc-dev"
     description: "GLIBC development headers"
