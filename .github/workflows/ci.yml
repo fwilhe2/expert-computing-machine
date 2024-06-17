@@ -17,8 +17,6 @@ jobs:
           - linux-kernel
           - glibc
           - ncurses
-          - kaetzli-base
-          - kaetzli-baselayout
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
