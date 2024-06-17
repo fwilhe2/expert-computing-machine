@@ -59,20 +59,20 @@ jobs:
         cd repo
         find .
         python3 -m http.server &
-    - run: |
-        docker pull cgr.dev/chainguard/apko
-        docker run --rm -v ${PWD}:/work -w /work cgr.dev/chainguard/apko --log-level debug build-minirootfs os.yaml rootfs.tgz
-        mkdir rootfs
-        sudo tar xzf rootfs.tgz -C rootfs
-        sudo /sbin/mkfs.ext4 -L root -d ./rootfs/ rootfs.ext4 2G
-    - run: tar cf rootfs.tar rootfs
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.3.3
-      with:
-        name: rootfs-tar
-        path: rootfs.tar
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.3.3
-      with:
-        name: rootfs-raw
-        path: rootfs.ext4
+    # - run: |
+    #     docker pull cgr.dev/chainguard/apko
+    #     docker run --rm -v ${PWD}:/work -w /work cgr.dev/chainguard/apko --log-level debug build-minirootfs os.yaml rootfs.tgz
+    #     mkdir rootfs
+    #     sudo tar xzf rootfs.tgz -C rootfs
+    #     sudo /sbin/mkfs.ext4 -L root -d ./rootfs/ rootfs.ext4 2G
+    # - run: tar cf rootfs.tar rootfs
+    # - name: Upload a Build Artifact
+    #   uses: actions/upload-artifact@v4.3.3
+    #   with:
+    #     name: rootfs-tar
+    #     path: rootfs.tar
+    # - name: Upload a Build Artifact
+    #   uses: actions/upload-artifact@v4.3.3
+    #   with:
+    #     name: rootfs-raw
+    #     path: rootfs.ext4

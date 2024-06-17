@@ -16,6 +16,7 @@ environment:
       - wolfi-baselayout
 
 pipeline:
+  # fixme: add vendored files
   - name: Install
     runs: |
       for i in bin etc etc/profile.d etc/secfixes.d home lib root var/log usr/bin usr/sbin usr/local/lib tmp var/spool/cron opt run usr/lib; do
