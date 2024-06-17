@@ -7,7 +7,6 @@ package:
     - license: MIT
   dependencies:
     runtime:
-      - apk-tools
       - busybox
       - wolfi-keys
 
