@@ -57,6 +57,7 @@ jobs:
           - wolfi-baselayout
           - ca-certificates
           - acl
+          - attr
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
