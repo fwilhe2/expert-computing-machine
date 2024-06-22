@@ -44,13 +44,13 @@ jobs:
       run: ls -R
     - run: mkdir -p repo/x86_64
     - run: find . -name '*.apk' -exec cp {} repo/x86_64 \;
-    - run: mkdir apk-index-temp
     - run: find . -name 'APKINDEX.tar.gz' -exec tar xf {} \;
     - run: python3 .github/workflows/merge-apk-index.py
-    - run: touch apk-index-temp/DESCRIPTION
-    - run: cat apk-index-temp/APKINDEX
-    - run: cd apk-index-temp; tar czf APKINDEX.tar.gz APKINDEX DESCRIPTION
-    - run: cp apk-index-temp/APKINDEX.tar.gz repo/x86_64
+    - run: touch repo/x86_64/DESCRIPTION
+    - run: echo xxxxx
+    - run: cat repo/x86_64/APKINDEX
+    - run: cd repo/x86_64; tar czf APKINDEX.tar.gz APKINDEX DESCRIPTION
+    - run: cp repo/x86_64/APKINDEX.tar.gz repo/x86_64
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:

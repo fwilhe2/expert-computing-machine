@@ -24,9 +24,7 @@ textfile_merged_json = open('repo/x86_64/APKINDEX.json', 'w')
 textfile_merged_json.write(json.dumps(merged_apk_index_json))
 
 
-
-
-apk_index_files = glob.glob("**/APKINDEX", recursive=True)
+apk_index_files = glob.glob("**/*-APKINDEX", recursive=True)
 
 out = ''
 
@@ -36,5 +34,5 @@ for f in apk_index_files:
 
 print(out)
 
-textfile_merged = open('apk-index-temp/APKINDEX', 'w')
+textfile_merged = open('repo/x86_64/APKINDEX', 'w')
 textfile_merged.write(out)
