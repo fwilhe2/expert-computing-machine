@@ -55,6 +55,7 @@ jobs:
           - ncurses
           - wolfi-base
           - wolfi-baselayout
+          - ca-certificates
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
