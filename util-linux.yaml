@@ -38,7 +38,7 @@ pipeline:
       uri: https://www.kernel.org/pub/linux/utils/util-linux/v${{vars.major-minor}}/util-linux-${{package.version}}.tar.xz
 
   - runs: |
-      cp ttydefaults.h include/
+      cp util-linux/ttydefaults.h include/
 
   - uses: autoconf/configure
     with:
@@ -141,7 +141,7 @@ subpackages:
           mkdir -p ${{targets.subpkgdir}}/etc/pam.d
 
           # install pam configuration for 'sulogin'
-          install -Dm644 su-l.pamd ${{targets.subpkgdir}}/etc/pam.d/su-l
+          install -Dm644 util-linux/su-l.pamd ${{targets.subpkgdir}}/etc/pam.d/su-l
 
           cd ${{targets.destdir}}
           for cmd in newgrp last lastb login lslogins nologin su sulogin; do
