@@ -75,7 +75,7 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
-        name: ${{ matrix.package }}
+        name: package-${{ matrix.package }}
         path: ${{ github.workspace }}/packages/${{ matrix.package }}
 
   rootfs:
@@ -93,14 +93,13 @@ jobs:
     - run: find . -name 'APKINDEX.tar.gz' -exec tar xf {} \;
     - run: python3 .github/workflows/merge-apk-index.py
     - run: touch repo/x86_64/DESCRIPTION
-    - run: echo xxxxx
     - run: cat repo/x86_64/APKINDEX
     - run: cd repo/x86_64; tar czf APKINDEX.tar.gz APKINDEX DESCRIPTION
     - run: find repo
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
-        name: repo
+        name: apk-repo
         path: repo
     - run: |
         cd repo
