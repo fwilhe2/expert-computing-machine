@@ -60,6 +60,7 @@ jobs:
           - attr
           - openssl
           - util-linux
+          - libcap
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
