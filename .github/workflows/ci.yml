@@ -58,6 +58,7 @@ jobs:
           - ca-certificates
           - acl
           - attr
+          - openssl
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
