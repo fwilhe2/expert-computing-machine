@@ -259,6 +259,15 @@ subpackages:
           mkdir -p "${{targets.subpkgdir}}"/sbin
           mv "${{targets.destdir}}"/sbin/sln "${{targets.subpkgdir}}"/sbin
 
+  - name: "libcrypt1"
+    description: "Password hashing library included with glibc"
+    dependencies:
+      provider-priority: 10
+      provides:
+        - so:libcrypt.so.1=1
+      runtime:
+        - libxcrypt
+
   - name: "glibc-locale-posix"
     description: "POSIX locale data for glibc"
     pipeline:
