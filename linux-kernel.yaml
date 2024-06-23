@@ -34,7 +34,9 @@ pipeline:
   - runs: |
       make -j $(nproc --all)
       mkdir -p ${{targets.destdir}}/boot
-      cp -rv arch/x86/boot/bzImage ${{targets.destdir}}/boot/vmlinuz
+      cp -rv arch/x86/boot/bzImage ${{targets.destdir}}/boot/bzImage
+      cd ${{targets.destdir}}/boot
+      ln -s ./vmlinuz ./bzImage
 update:
   enabled: true
   manual: true # be careful upgrading this package
