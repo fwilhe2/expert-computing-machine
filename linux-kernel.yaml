@@ -13,6 +13,7 @@ environment:
       - coreutils
       - gnutar
       - bash
+      - findutils
       - busybox
       - ca-certificates-bundle
       - scanelf
