@@ -17,6 +17,7 @@ environment:
       - bison
       - bc
       - wolfi-baselayout
+      - gmp-dev
 
 pipeline:
   - uses: git-checkout
