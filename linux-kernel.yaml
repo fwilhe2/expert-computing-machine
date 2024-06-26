@@ -18,6 +18,7 @@ environment:
       - bc
       - wolfi-baselayout
       - gmp-dev
+      - mpc-dev
 
 pipeline:
   - uses: git-checkout
