@@ -11,6 +11,7 @@ environment:
     packages:
       - build-base
       - busybox
+      - coreutils
       - ca-certificates-bundle
       - scanelf
       - flex
