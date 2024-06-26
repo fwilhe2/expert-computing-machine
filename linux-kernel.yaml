@@ -12,6 +12,7 @@ environment:
       - build-base
       - coreutils
       - gnutar
+      - bash
       - ca-certificates-bundle
       - scanelf
       - flex
