@@ -19,6 +19,7 @@ environment:
       - wolfi-baselayout
       - gmp-dev
       - mpc-dev
+      - mpfr-dev
 
 pipeline:
   - uses: git-checkout
