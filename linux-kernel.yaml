@@ -10,8 +10,8 @@ environment:
   contents:
     packages:
       - build-base
-      - busybox
       - coreutils
+      - gnutar
       - ca-certificates-bundle
       - scanelf
       - flex
