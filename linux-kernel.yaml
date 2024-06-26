@@ -24,6 +24,7 @@ environment:
       - gmp-dev
       - mpc-dev
       - mpfr-dev
+      - openssl
       - openssl-dev
       - libelf
       - elfutils-dev
