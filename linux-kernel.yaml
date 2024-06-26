@@ -29,7 +29,7 @@ pipeline:
       make mrproper
 
   - runs: |
-      make defconfig
+      make allmodconfig
 
   - runs: |
       make -j $(nproc --all)
