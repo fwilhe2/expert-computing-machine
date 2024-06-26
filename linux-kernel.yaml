@@ -21,6 +21,8 @@ environment:
       - mpc-dev
       - mpfr-dev
       - openssl-dev
+      - libelf
+      - elfutils-dev
 
 pipeline:
   - uses: git-checkout
