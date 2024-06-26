@@ -23,6 +23,7 @@ environment:
       - openssl-dev
       - libelf
       - elfutils-dev
+      - perl
 
 pipeline:
   - uses: git-checkout
