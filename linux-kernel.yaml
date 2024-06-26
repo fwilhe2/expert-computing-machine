@@ -20,6 +20,7 @@ environment:
       - gmp-dev
       - mpc-dev
       - mpfr-dev
+      - openssl-dev
 
 pipeline:
   - uses: git-checkout
