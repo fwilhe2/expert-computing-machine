@@ -41,7 +41,7 @@ pipeline:
       make mrproper
 
   - runs: |
-      make allmodconfig
+      make allyesconfig
 
   - runs: |
       make -j $(nproc --all)
