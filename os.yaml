@@ -7,7 +7,6 @@ contents:
     - bash
     - coreutils
     - systemd
-    - linux-kernel
 
 archs:
 - x86_64
