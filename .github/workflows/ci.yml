@@ -52,7 +52,6 @@ jobs:
           - bash
           - systemd
           - coreutils
-          - linux-kernel
           - glibc
           - ncurses
           - wolfi-base
