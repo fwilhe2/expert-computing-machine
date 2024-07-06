@@ -62,5 +62,8 @@ pipeline:
       mkdir -p "${{targets.destdir}}"/var/empty
       chmod 755 "${{targets.destdir}}"/var/empty
 
+      mkdir "${{targets.destdir}}"/sys
+      
+
 update:
   enabled: false
