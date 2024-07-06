@@ -41,7 +41,8 @@ pipeline:
       make mrproper
 
   - runs: |
-      make allyesconfig
+      make defconfig
+      make kvm_guest.config
 
   - runs: |
       make -j $(nproc --all)
