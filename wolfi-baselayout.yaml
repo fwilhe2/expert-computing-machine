@@ -63,6 +63,8 @@ pipeline:
       chmod 755 "${{targets.destdir}}"/var/empty
 
       mkdir "${{targets.destdir}}"/sys
+
+      touch "${{targets.destdir}}"/etc/machine-id
       
 
 update:
