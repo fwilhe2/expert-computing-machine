@@ -26,6 +26,11 @@ pipeline:
   - runs: |
       install -sD -m 755 dumb-init "${{targets.destdir}}"/usr/bin/dumb-init
 
+      # this seems to work when calling it via the kernel cmdline in qemu.. :shrug:
+      echo '#!/bin/bash' > "${{targets.destdir}}"/init
+      echo '/usr/bin/dumb-init --verbose bash' >> "${{targets.destdir}}"/init
+      chmod +x "${{targets.destdir}}"/init
+
   - uses: strip
 
 update:
