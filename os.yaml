@@ -6,7 +6,7 @@ contents:
   packages:
     - bash
     - coreutils
-    - systemd
+    - dumb-init
 
 archs:
 - x86_64

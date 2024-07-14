@@ -50,7 +50,7 @@ jobs:
       matrix:
         package:
           - bash
-          - systemd
+          # - systemd
           - coreutils
           - glibc
           - ncurses
@@ -63,7 +63,8 @@ jobs:
           - util-linux
           - libcap
           - libxcrypt
-          - linux-kernel
+          # - linux-kernel
+          - dumb-init
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main
