@@ -65,6 +65,7 @@ jobs:
           - libxcrypt
           # - linux-kernel
           - dumb-init
+          - finit
     steps:
     - uses: actions/checkout@v4
     - uses: chainguard-dev/actions/melange-build@main

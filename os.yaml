@@ -6,7 +6,7 @@ contents:
   packages:
     - bash
     - coreutils
-    - dumb-init
+    - finit
 
 archs:
 - x86_64
