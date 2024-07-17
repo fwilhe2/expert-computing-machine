@@ -1,0 +1,31 @@
+package:
+  name: libuev
+  version: 2.4.1
+  epoch: 1
+  copyright:
+    - license: MIT
+
+environment:
+  contents:
+    packages:
+      - bash
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+
+pipeline:
+
+  - uses: fetch
+    with:
+      uri: https://github.com/troglobit/libuev/releases/download/v2.4.1/libuev-2.4.1.tar.gz
+      expected-sha256: 7a6a31cf5c5df0eb424230588d2c5fa33253fc22a7a5b766d905d1c7ffa979d5
+
+  - runs: |
+      ./configure
+      make -j5
+      make install-strip
+      ldconfig
+
+  - name: Make Install
+    runs: |
+      DESTDIR="${{targets.destdir}}" make install
