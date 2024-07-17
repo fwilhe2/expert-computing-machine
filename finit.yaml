@@ -46,7 +46,8 @@ pipeline:
       ./configure \
          --prefix=/usr \
          --libdir=/lib \
-         --libexecdir=/usr/libexec
+         --libexecdir=/usr/libexec \
+         --enable-static
 
   - uses: autoconf/make
 
