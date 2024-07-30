@@ -77,13 +77,13 @@ jobs:
     - run: sudo apt-get update && sudo apt-get -y install bubblewrap
     - run: |
         ./melange-bin/melange build --arch x86_64 --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub --repository-append https://packages.wolfi.dev/os ${{ matrix.package }}.yaml
-    - run: find ${{ github.workspace }}/packages/${{ matrix.package }}
-    - run: cd ${{ github.workspace }}/packages/${{ matrix.package }}/x86_64; tar xzf APKINDEX.tar.gz; mv APKINDEX ${{ matrix.package }}-APKINDEX
+    - run: find ${{ github.workspace }}/packages
+    - run: cd ${{ github.workspace }}/packages/x86_64; tar xzf APKINDEX.tar.gz; mv APKINDEX ${{ matrix.package }}-APKINDEX
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
         name: package-${{ matrix.package }}
-        path: ${{ github.workspace }}/packages/${{ matrix.package }}
+        path: ${{ github.workspace }}/packages
 
   rootfs:
     runs-on: ubuntu-24.04
