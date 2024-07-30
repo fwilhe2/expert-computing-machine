@@ -73,6 +73,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: actions/download-artifact@v4
+    - run: chmod +x ./melange-bin/melange
     - run: |
         ./melange-bin/melange build --arch x86_64 --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub --repository-append https://packages.wolfi.dev/os ${{ matrix.package }}.yaml
     - run: find ${{ github.workspace }}/packages/${{ matrix.package }}
