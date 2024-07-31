@@ -14,7 +14,8 @@ environment:
       - automake
       - bash
       - build-base
-      - busybox
+      - busybox-full
+      - coreutils
       - ca-certificates-bundle
       - libcap-ng-dev
       - libeconf-dev
