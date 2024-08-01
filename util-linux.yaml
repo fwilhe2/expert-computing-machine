@@ -1,6 +1,6 @@
 package:
   name: util-linux
-  version: 2.40.2
+  version: 2.39.4
   epoch: 0
   description: Random collection of Linux utilities
   copyright:
@@ -12,9 +12,14 @@ environment:
     packages:
       - autoconf
       - automake
-      - bash
+      - dash-binsh
+      - gnutar
+      - findutils
+      - sed
       - build-base
-      - busybox-full
+      - dash
+      - gawk
+      - grep
       - coreutils
       - ca-certificates-bundle
       - libcap-ng-dev
@@ -35,7 +40,7 @@ var-transforms:
 pipeline:
   - uses: fetch
     with:
-      expected-sha256: d78b37a66f5922d70edf3bdfb01a6b33d34ed3c3cafd6628203b2a2b67c8e8b3
+      expected-sha256: 6c4f8723dafd41c39d93ecbf16509fc88c33cd5bd3277880ae5a1d97a014fd0e
       uri: https://www.kernel.org/pub/linux/utils/util-linux/v${{vars.major-minor}}/util-linux-${{package.version}}.tar.xz
 
   - runs: |
@@ -53,7 +58,11 @@ pipeline:
         --with-vendordir=/usr/lib \
         --without-python \
         --without-econf \
-        --disable-asciidoc
+        --disable-asciidoc \
+        --disable-write \
+        --disable-wall \
+        --disable-mount \
+        --disable-su
 
   - uses: autoconf/make
 
@@ -155,8 +164,6 @@ subpackages:
                 continue 2
               fi
             done
-            error "file $cmd not found"
-            return 1
           done
 
   - name: util-linux-misc
