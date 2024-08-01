@@ -6,7 +6,7 @@ contents:
   packages:
     - bash
     - coreutils
-    - systemd
+    - systemd-init
 
 archs:
 - x86_64
