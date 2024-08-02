@@ -5,6 +5,7 @@ contents:
     - http://localhost:8000
   packages:
     - bash
+    - dash-binsh
     - coreutils
     - systemd-init
     - libsystemd
