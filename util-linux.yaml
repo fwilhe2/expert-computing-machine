@@ -59,10 +59,7 @@ pipeline:
         --without-python \
         --without-econf \
         --disable-asciidoc \
-        --disable-write \
-        --disable-wall \
-        --disable-mount \
-        --disable-su
+        --disable-makeinstall-chown
 
   - uses: autoconf/make
 
