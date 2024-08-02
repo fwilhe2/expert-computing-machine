@@ -161,6 +161,8 @@ subpackages:
                 continue 2
               fi
             done
+            error "file $cmd not found"
+            return 1
           done
 
   - name: util-linux-misc

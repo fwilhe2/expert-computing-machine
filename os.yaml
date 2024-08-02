@@ -9,6 +9,7 @@ contents:
     - coreutils
     - systemd-init
     - libsystemd
+    - mount
 
 archs:
 - x86_64
