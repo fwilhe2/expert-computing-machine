@@ -73,6 +73,7 @@ jobs:
           - libuev
           - tzdata
           - kmod
+          - xz
     steps:
     - uses: actions/checkout@v4
     - uses: actions/download-artifact@v4
