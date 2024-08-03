@@ -52,11 +52,13 @@ pipeline:
   - uses: autoconf/make-install
 
   - runs: |
+      mkdir -p ${{targets.destdir}}/sbin
       mkdir -p ${{targets.destdir}}/usr/bin
       mkdir -p ${{targets.destdir}}/usr/sbin
       for i in lsmod rmmod insmod modinfo modprobe depmod; do
         ln -sf ../bin/kmod ${{targets.destdir}}/usr/sbin/$i
       done
+      ln -sf ../bin/kmod ${{targets.destdir}}/sbin/modprobe
 
   - uses: strip
 
