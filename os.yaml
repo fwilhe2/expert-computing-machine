@@ -5,8 +5,12 @@ contents:
     - http://localhost:8000
   packages:
     - bash
+    - dash-binsh
     - coreutils
-    - systemd
+    - systemd-init
+    - libsystemd
+    - mount
+    - kmod
 
 archs:
 - x86_64

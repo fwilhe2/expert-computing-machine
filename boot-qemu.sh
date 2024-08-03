@@ -8,7 +8,7 @@ qemu-system-x86_64 \
 	-m 2G \
 	-smp 2 \
 	-kernel ./bzImage \
-	-append "rw console=ttyS0 init=/myinit root=/dev/sda earlyprintk=serial net.ifnames=0 systemd.journald.forward_to_console=1" \
+	-append "rw console=ttyS0 init=/usr/sbin/init root=/dev/sda earlyprintk=serial net.ifnames=0 systemd.journald.forward_to_console=1 debug systemd.debug_shell" \
 	-drive file=rootfs.ext4,format=raw \
 	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
 	-net nic,model=e1000 \

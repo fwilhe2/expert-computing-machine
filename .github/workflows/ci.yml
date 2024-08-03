@@ -5,7 +5,7 @@ on:
 
 jobs:
   build-tools:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
     - name: Checkout fwilhe2/melange
@@ -43,14 +43,17 @@ jobs:
         path: /usr/bin/apko
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     continue-on-error: true
+    needs:
+      - build-tools
     strategy:
       fail-fast: false
       matrix:
         package:
           - bash
-          # - systemd
+          - dash
+          - systemd
           - coreutils
           - glibc
           - ncurses
@@ -68,24 +71,28 @@ jobs:
           - finit
           - libite
           - libuev
+          - tzdata
+          - kmod
+          - xz
+          - zlib
+          - zstd
     steps:
     - uses: actions/checkout@v4
-    - uses: chainguard-dev/actions/melange-build@main
-      with:
-        config: "${{ matrix.package }}.yaml"
-        repository-append: "https://packages.wolfi.dev/os"
-        keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
-        repository-path: ${{ github.workspace }}/packages/${{ matrix.package }}
-    - run: find ${{ github.workspace }}/packages/${{ matrix.package }}
-    - run: cd ${{ github.workspace }}/packages/${{ matrix.package }}/x86_64; tar xzf APKINDEX.tar.gz; mv APKINDEX ${{ matrix.package }}-APKINDEX
+    - uses: actions/download-artifact@v4
+    - run: chmod +x ./melange-bin/melange
+    - run: sudo apt-get update && sudo apt-get -y install qemu-user-static bubblewrap
+    - run: |
+        ./melange-bin/melange build --log-level debug --arch x86_64 --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub --repository-append https://packages.wolfi.dev/os ${{ matrix.package }}.yaml
+    - run: find ${{ github.workspace }}/packages
+    - run: cd ${{ github.workspace }}/packages/x86_64; tar xzf APKINDEX.tar.gz; mv APKINDEX ${{ matrix.package }}-APKINDEX
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
         name: package-${{ matrix.package }}
-        path: ${{ github.workspace }}/packages/${{ matrix.package }}
+        path: ${{ github.workspace }}/packages
 
   rootfs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs:
       - build
       - build-tools
@@ -118,12 +125,7 @@ jobs:
         sudo tar xzf rootfs.tgz -C rootfs
         sudo /sbin/mkfs.ext4 -L root -d ./rootfs/ rootfs.ext4 2G
     - run: sudo tar cf rootfs.tar rootfs
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v4.3.3
-      with:
-        name: rootfs-tar
-        path: rootfs.tar
-    - name: Upload a Build Artifact
+    - name: Upload rootfs disk image
       uses: actions/upload-artifact@v4.3.3
       with:
         name: rootfs-raw
