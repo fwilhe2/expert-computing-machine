@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o errexit
+
 apko --log-level debug build-minirootfs os.yaml rootfs.tgz
 mkdir -p rootfs
 sudo tar xzf rootfs.tgz -C rootfs

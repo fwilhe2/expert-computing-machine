@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o errexit
+
 for file in manifests/*; do
     if [ -f "$file" ]; then
         echo "$file"
