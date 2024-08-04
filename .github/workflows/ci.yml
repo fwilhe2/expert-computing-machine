@@ -51,39 +51,35 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          - bash
-          - dash
-          - systemd
-          - coreutils
-          - glibc
-          - ncurses
-          - wolfi-base
-          - wolfi-baselayout
-          - ca-certificates
           - acl
           - attr
-          - openssl
-          - util-linux
+          - bash
+          - ca-certificates
+          - coreutils
+          - dash
+          - glibc
+          - kmod
           - libcap
           - libxcrypt
-          # - linux-kernel
-          - dumb-init
-          - finit
-          - libite
-          - libuev
+          - ncurses
+          - openssl
+          - systemd
           - tzdata
-          - kmod
+          - util-linux
+          - wolfi-base
+          - wolfi-baselayout
           - xz
           - zlib
           - zstd
+          # - linux-kernel
     steps:
     - uses: actions/checkout@v4
     - uses: actions/download-artifact@v4
-    - run: chmod +x ./melange-bin/melange
+    - run: sudo mv ./melange-bin/melange /usr/local/bin/ && chmod +x /usr/local/bin/melange
     - run: sudo apt-get update && sudo apt-get -y install qemu-user-static bubblewrap
     - run: |
-        ./melange-bin/melange build --log-level debug --arch x86_64 --keyring-append https://packages.wolfi.dev/os/wolfi-signing.rsa.pub --repository-append https://packages.wolfi.dev/os ${{ matrix.package }}.yaml
-    - run: find ${{ github.workspace }}/packages
+        ./build-package.sh ${{ matrix.package }}.yaml
+    - run: find ${{ github.workspace }}/manifests/packages
     - run: cd ${{ github.workspace }}/packages/x86_64; tar xzf APKINDEX.tar.gz; mv APKINDEX ${{ matrix.package }}-APKINDEX
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
