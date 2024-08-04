@@ -58,7 +58,7 @@ pipeline:
       for i in lsmod rmmod insmod modinfo modprobe depmod; do
         ln -sf ../bin/kmod ${{targets.destdir}}/usr/sbin/$i
       done
-      ln -sf ../bin/kmod ${{targets.destdir}}/sbin/modprobe
+      ln -sf ../usr/bin/kmod ${{targets.destdir}}/sbin/modprobe
 
   - uses: strip
 

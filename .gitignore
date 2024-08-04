@@ -1,1 +1,8 @@
 packages/
+repo/
+rootfs/
+rootfs.ext4
+rootfs.tgz
+bzImage*
+APKINDEX
+DESCRIPTION
