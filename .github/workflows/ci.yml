@@ -79,7 +79,7 @@ jobs:
     - run: sudo apt-get update && sudo apt-get -y install qemu-user-static bubblewrap
     - run: |
         ./build-package.sh ${{ matrix.package }}.yaml
-    - run: find ${{ github.workspace }}/manifests/packages
+    - run: find ${{ github.workspace }}/packages
     - run: cd ${{ github.workspace }}/packages/x86_64; tar xzf APKINDEX.tar.gz; mv APKINDEX ${{ matrix.package }}-APKINDEX
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
