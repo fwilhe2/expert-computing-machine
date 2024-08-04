@@ -4,13 +4,16 @@ contents:
   repositories:
     - http://localhost:8000
   packages:
+    - agetty
     - bash
-    - dash-binsh
     - coreutils
-    - systemd-init
+    - dash-binsh
+    - kmod
     - libsystemd
     - mount
-    - kmod
+    - systemd-init
+    - util-linux-login
+    - linux-pam
 
 archs:
 - x86_64
