@@ -40,3 +40,4 @@ locate:x:245:
 utmp:x:406:
 nogroup:x:65533:
 nobody:x:65534:
+nobody:x:1000:
