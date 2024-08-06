@@ -1,6 +1,6 @@
 package:
   name: bash
-  version: 5.2.21
+  version: 5.2.32
   epoch: 0
   description: "GNU bourne again shell"
   copyright:
