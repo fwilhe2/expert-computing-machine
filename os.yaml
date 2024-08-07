@@ -14,6 +14,7 @@ contents:
     - systemd-init
     - util-linux-login
     - linux-pam
+    - dbus
 
 archs:
 - x86_64
