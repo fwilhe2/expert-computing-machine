@@ -74,6 +74,7 @@ jobs:
           - zstd
           - dbus
           - kdb
+          - expat
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
