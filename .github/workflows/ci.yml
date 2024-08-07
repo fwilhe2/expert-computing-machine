@@ -105,6 +105,8 @@ jobs:
         path: repo
     - run: ./serve-repo.sh
     - run: ./make-rootfs.sh
+    - run: find rootfs
+    - run: ls -lR rootfs
     - run: sudo tar cf rootfs.tar rootfs
     - name: Upload rootfs disk image
       uses: actions/upload-artifact@v4.3.3
