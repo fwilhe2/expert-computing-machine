@@ -15,6 +15,7 @@ contents:
     - util-linux-login
     - linux-pam
     - dbus
+    - kdb
 
 archs:
 - x86_64

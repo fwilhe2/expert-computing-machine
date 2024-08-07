@@ -73,6 +73,7 @@ jobs:
           - zlib
           - zstd
           - dbus
+          - kdb
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
