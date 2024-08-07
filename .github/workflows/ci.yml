@@ -75,6 +75,7 @@ jobs:
           - dbus
           - kdb
           - expat
+          - gzip
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4

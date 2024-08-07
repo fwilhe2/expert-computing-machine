@@ -16,6 +16,7 @@ contents:
     - linux-pam
     - dbus
     - kdb
+    - gzip
 
 archs:
 - x86_64
