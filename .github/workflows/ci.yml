@@ -82,6 +82,7 @@ jobs:
           - gzip
           - nghttp2
           - libpsl
+          - libidn2
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
