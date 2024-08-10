@@ -73,6 +73,7 @@ jobs:
           - zlib
           - zstd
           - curl
+          - brotli
           - iputils
           - strace
           - dbus
