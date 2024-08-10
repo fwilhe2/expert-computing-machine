@@ -75,6 +75,10 @@ jobs:
           - curl
           - iputils
           - strace
+          - dbus
+          - kdb
+          - expat
+          - gzip
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
@@ -108,6 +112,9 @@ jobs:
         path: repo
     - run: ./serve-repo.sh
     - run: ./make-rootfs.sh
+    - run: sudo find rootfs
+    - run: sudo ls -lR rootfs
+    - run: sudo du -h rootfs -d 5
     - run: sudo tar cf rootfs.tar rootfs
     - name: Upload rootfs disk image
       uses: actions/upload-artifact@v4.3.3

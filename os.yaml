@@ -17,6 +17,9 @@ contents:
     - iputils
     - curl
     - strace
+    - dbus
+    - kdb
+    - gzip
 
 archs:
 - x86_64
