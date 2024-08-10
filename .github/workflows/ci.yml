@@ -83,6 +83,7 @@ jobs:
           - nghttp2
           - libpsl
           - libidn2
+          - libunistring
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
