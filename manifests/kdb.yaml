@@ -1,0 +1,40 @@
+package:
+  name: kdb
+  version: 2.6.4
+  epoch: 0
+  copyright:
+    - license: GPL-2.0-or-later
+
+environment:
+  contents:
+    packages:
+      - autoconf
+      - automake
+      - bash
+      # - glib-dev # TODO needed by libdbus-glib
+      # - util-linux-dev # TODO adding unit-linux at a later date
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - expat-dev
+      - libsm-dev
+      - libx11-dev
+      - linux-pam-dev
+      - meson
+      - xmlto
+
+pipeline:
+  - uses: fetch
+    with:
+      expected-sha256: 99b2a39e1c5475ffe8e1bb2004345cb8849c3cc1aedbe541beee2d45e270975f
+      uri: https://mirrors.edge.kernel.org/pub/linux/utils/kbd/kbd-${{package.version}}.tar.gz
+  - uses: autoconf/configure
+
+  - uses: autoconf/make
+
+  - uses: autoconf/make-install
+
+  - uses: strip
+
+update:
+  enabled: false
