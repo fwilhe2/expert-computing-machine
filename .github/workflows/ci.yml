@@ -80,6 +80,7 @@ jobs:
           - kdb
           - expat
           - gzip
+          - nghttp2
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
