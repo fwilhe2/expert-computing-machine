@@ -81,6 +81,7 @@ jobs:
           - expat
           - gzip
           - nghttp2
+          - libpsl
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
