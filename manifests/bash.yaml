@@ -18,7 +18,7 @@ pipeline:
   - uses: fetch
     with:
       uri: https://ftp.gnu.org/gnu/bash/bash-${{package.version}}.tar.gz
-      expected-sha256: c8e31bdc59b69aaffc5b36509905ba3e5cbb12747091d27b4b977f078560d5b8
+      expected-sha256: d3ef80d2b67d8cbbe4d3265c63a72c46f9b278ead6e0e06d61801b58f23f50b5
 
   - runs: |
       ./configure \
