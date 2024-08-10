@@ -72,6 +72,9 @@ jobs:
           - xz
           - zlib
           - zstd
+          - curl
+          - iputils
+          - strace
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
