@@ -85,6 +85,7 @@ jobs:
           - libidn2
           - libunistring
           - iproute2
+          - elfutils
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
