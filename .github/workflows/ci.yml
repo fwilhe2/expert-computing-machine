@@ -89,6 +89,7 @@ jobs:
           - iptables
           - bzip2
           - libmnl
+          - libnftnl
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
