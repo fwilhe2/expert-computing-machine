@@ -29,7 +29,7 @@ pipeline:
 
   - uses: patch
     with:
-      patches: musl-fix-headers.patch
+      patches: libmnl/musl-fix-headers.patch
 
   - uses: autoconf/configure
     with:
