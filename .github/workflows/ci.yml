@@ -84,6 +84,7 @@ jobs:
           - libpsl
           - libidn2
           - libunistring
+          - iproute2
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4

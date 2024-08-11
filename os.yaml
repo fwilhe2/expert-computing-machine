@@ -20,6 +20,7 @@ contents:
     - dbus
     - kdb
     - gzip
+    - iproute2
 
 archs:
 - x86_64
