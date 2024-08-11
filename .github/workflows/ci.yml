@@ -87,6 +87,7 @@ jobs:
           - iproute2
           - elfutils
           - iptables
+          - bzip2
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
