@@ -105,7 +105,8 @@ jobs:
         rm -rf bubblewrap
 
     - run: |
-        ./build-package.sh ${{ matrix.package }}
+        sudo ./build-package.sh ${{ matrix.package }}
+    - run: sudo chown -R runner:runner ${{ github.workspace }}/packages
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
