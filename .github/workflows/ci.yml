@@ -114,6 +114,7 @@ jobs:
       with:
         name: sbom
         path: rootfs/var/lib/db/sbom/
+    - run: python .github/workflows/md-sbom.py >> $GITHUB_STEP_SUMMARY
     - run: sudo find rootfs
     - run: sudo ls -lR rootfs
     - run: sudo du -h rootfs -d 5
