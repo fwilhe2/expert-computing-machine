@@ -81,7 +81,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/download-artifact@v4
     - run: sudo mv ./melange-bin/melange /usr/local/bin/ && chmod +x /usr/local/bin/melange
-    - run: sudo apt-get update && sudo apt-get -y install qemu-user-static uidmap
+    - run: sudo apt-get update && sudo apt-get -y install qemu-user-static uidmap procps
 
     # https://github.com/chainguard-dev/actions/blob/2faf313e789d339d91d3c4a73445ccdf90e5272d/setup-melange/action.yaml#L30
     - name: 'Install dependencies'
