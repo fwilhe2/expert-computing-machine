@@ -109,6 +109,11 @@ jobs:
         path: repo
     - run: ./serve-repo.sh
     - run: ./make-rootfs.sh
+    - name: Upload sbom
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: sbom
+        path: rootfs/var/lib/db/sbom/
     - run: sudo find rootfs
     - run: sudo ls -lR rootfs
     - run: sudo du -h rootfs -d 5
