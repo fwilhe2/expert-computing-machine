@@ -25,6 +25,7 @@ jobs:
     - name: Build melange
       working-directory: melange
       run: |
+        git log | head
         sudo make install
     - name: Build apko
       working-directory: apko
