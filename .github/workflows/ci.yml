@@ -72,14 +72,41 @@ jobs:
           - xz
           - zlib
           - zstd
+          - dbus
+          - kdb
+          - expat
+          - gzip
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4
     - uses: actions/download-artifact@v4
     - run: sudo mv ./melange-bin/melange /usr/local/bin/ && chmod +x /usr/local/bin/melange
-    - run: sudo apt-get update && sudo apt-get -y install qemu-user-static bubblewrap
+    - run: sudo apt-get update && sudo apt-get -y install qemu-user-static
+
+    # https://github.com/chainguard-dev/actions/blob/2faf313e789d339d91d3c4a73445ccdf90e5272d/setup-melange/action.yaml#L30
+    - name: 'Install dependencies'
+      shell: bash
+      run: |
+        sudo apt install -y build-essential git jq
+    # TODO: the bubblewrap package available from "apt install"
+    # is outdated and missing newer features such as --clearenv flag,
+    # so instead we download the wolfi .apk and use the binary in there
+    - name: 'Install dependencies (bubblewrap)'
+      shell: bash
+      run: |
+        sudo apt install -y libcap-dev meson ninja-build
+        git clone https://github.com/containers/bubblewrap
+        pushd bubblewrap
+        meson --prefix=/usr -Drequire_userns=true . output
+        cd output
+        ninja
+        sudo ninja install
+        popd
+        rm -rf bubblewrap
+
     - run: |
-        ./build-package.sh ${{ matrix.package }}
+        sudo ./build-package.sh ${{ matrix.package }}
+    - run: sudo chown -R runner:runner ${{ github.workspace }}/packages
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
       with:
@@ -105,6 +132,15 @@ jobs:
         path: repo
     - run: ./serve-repo.sh
     - run: ./make-rootfs.sh
+    - name: Upload sbom
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: sbom
+        path: rootfs/var/lib/db/sbom/
+    - run: python .github/workflows/md-sbom.py >> $GITHUB_STEP_SUMMARY
+    - run: sudo find rootfs
+    - run: sudo ls -lR rootfs
+    - run: sudo du -h rootfs -d 5
     - run: sudo tar cf rootfs.tar rootfs
     - name: Upload rootfs disk image
       uses: actions/upload-artifact@v4.3.3
