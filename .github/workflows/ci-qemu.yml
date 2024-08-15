@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v4.1.7
       with:
         repository: fwilhe2/melange
-        ref: main
+        ref: fwilhe-dev
         path: melange
     - name: Checkout fwilhe2/apko
       uses: actions/checkout@v4.1.7
