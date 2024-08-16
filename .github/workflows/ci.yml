@@ -72,10 +72,24 @@ jobs:
           - xz
           - zlib
           - zstd
+          - curl
+          - brotli
+          - iputils
+          - strace
           - dbus
           - kdb
           - expat
           - gzip
+          - nghttp2
+          - libpsl
+          - libidn2
+          - libunistring
+          - iproute2
+          - elfutils
+          - iptables
+          - bzip2
+          - libmnl
+          - libnftnl
           # - linux-kernel
     steps:
     - uses: actions/checkout@v4

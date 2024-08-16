@@ -14,9 +14,13 @@ contents:
     - systemd-init
     - util-linux-login
     - linux-pam
+    - iputils
+    - curl
+    - strace
     - dbus
     - kdb
     - gzip
+    - iproute2
 
 archs:
 - x86_64
