@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
-    - name: Checkout fwilhe2/melange
+    - name: Checkout chainguard-dev/melange
       uses: actions/checkout@v4.1.7
       with:
-        repository: fwilhe2/melange
-        ref: fwilhe-dev
+        repository: chainguard-dev/melange
+        ref: main
         path: melange
     - name: Checkout fwilhe2/apko
       uses: actions/checkout@v4.1.7
