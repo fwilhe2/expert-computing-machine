@@ -21,6 +21,7 @@ contents:
     - kdb
     - gzip
     - iproute2
+    - linux-kernel
 
 archs:
 - x86_64

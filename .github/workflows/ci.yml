@@ -90,7 +90,7 @@ jobs:
           - bzip2
           - libmnl
           - libnftnl
-          # - linux-kernel
+          - linux-kernel
     steps:
     - uses: actions/checkout@v4
     - uses: actions/download-artifact@v4

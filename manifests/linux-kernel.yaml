@@ -45,9 +45,8 @@ pipeline:
       make kvm_guest.config
 
   - runs: |
-      make -j $(nproc --all)
-      mkdir -p ${{targets.destdir}}/boot
-      cp -rv arch/x86/boot/bzImage ${{targets.destdir}}/boot/bzImage
+      make dir-pkg -j $(nproc --all)
+      cp -rv tar-install/* ${{targets.destdir}}/
 update:
   enabled: true
   manual: true # be careful upgrading this package
