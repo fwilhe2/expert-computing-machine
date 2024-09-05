@@ -146,6 +146,12 @@ jobs:
         path: repo
     - run: ./serve-repo.sh
     - run: ./make-rootfs.sh
+    - run: cd rootfs; find . | sort > ../rootfs-listing.txt; cd ..
+    - name: Upload rootfs-listing.txt
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: rootfs-listing.txt
+        path: rootfs-listing.txt
     - name: Upload sbom
       uses: actions/upload-artifact@v4.3.3
       with:
