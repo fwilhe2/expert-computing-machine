@@ -120,6 +120,8 @@ jobs:
 
     - run: |
         sudo ./build-package.sh ${{ matrix.package }}
+    - name: Display structure of files
+      run: ls -R ${{ github.workspace }}/packages
     - run: sudo chown -R runner:runner ${{ github.workspace }}/packages
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
