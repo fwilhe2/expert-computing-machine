@@ -148,24 +148,23 @@ jobs:
         path: repo
     - run: ./serve-repo.sh
     - run: ./make-rootfs.sh
-    - run: cd rootfs; find . | sort > ../rootfs-listing.txt; cd ..
-    - name: Upload rootfs-listing.txt
-      uses: actions/upload-artifact@v4.3.3
-      with:
-        name: rootfs-listing.txt
-        path: rootfs-listing.txt
     - name: Upload sbom
       uses: actions/upload-artifact@v4.3.3
       with:
         name: sbom
-        path: rootfs/var/lib/db/sbom/
+        path: rootfs-amd64/var/lib/db/sbom/
     - run: python .github/workflows/md-sbom.py >> $GITHUB_STEP_SUMMARY
-    - run: sudo find rootfs
-    - run: sudo ls -lR rootfs
-    - run: sudo du -h rootfs -d 5
-    - run: sudo tar cf rootfs.tar rootfs
-    - name: Upload rootfs disk image
+    - run: sudo find rootfs-amd64
+    - run: sudo ls -lR rootfs-amd64
+    - run: sudo du -h rootfs-amd64 -d 5
+    - run: sudo tar cf rootfs-amd64.tar rootfs-amd64
+    - name: Upload rootfs-amd64 disk image
       uses: actions/upload-artifact@v4.3.3
       with:
-        name: rootfs-raw
-        path: rootfs.ext4
+        name: rootfs-amd64-raw
+        path: rootfs-amd64.ext4
+    - name: Upload rootfs-aarch64 disk image
+      uses: actions/upload-artifact@v4.3.3
+      with:
+        name: rootfs-aarch64-raw
+        path: rootfs-aarch64.ext4
