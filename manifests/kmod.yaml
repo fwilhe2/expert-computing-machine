@@ -45,7 +45,8 @@ pipeline:
         --with-zlib \
         --with-xz \
         --with-zstd \
-        --with-openssl
+        --with-openssl \
+        --disable-manpages
 
   - uses: autoconf/make
 
