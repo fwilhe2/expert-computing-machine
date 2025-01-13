@@ -1,6 +1,6 @@
 package:
   name: nghttp2
-  version: 1.62.1
+  version: 1.64.0
   epoch: 0
   description: "experimental HTTP/2 client, server and library"
   copyright:
@@ -26,7 +26,7 @@ pipeline:
     with:
       repository: https://github.com/nghttp2/nghttp2.git
       tag: v${{package.version}}
-      expected-commit: d13a5758373931064636c1641db6277db45552dc
+      expected-commit: 526ff38e0249acbcc4d0e8958c12cdeae9960cfe
 
   - runs: autoreconf -vfi
 

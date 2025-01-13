@@ -1,6 +1,6 @@
 package:
   name: libnftnl
-  version: 1.2.7
+  version: 1.2.8
   epoch: 0
   description: Netfilter library providing interface to the nf_tables subsystem
   copyright:
@@ -25,7 +25,7 @@ pipeline:
     with:
       repository: git://git.netfilter.org/libnftnl
       tag: libnftnl-${{package.version}}
-      expected-commit: 116e95aa7b6358c917de8c69f6f173874030b46b
+      expected-commit: 06e2cbec41c7cd7f2b1e660ce5e5f949912e32eb
 
   - runs: |
       ./autogen.sh

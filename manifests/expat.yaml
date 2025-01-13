@@ -1,6 +1,6 @@
 package:
   name: expat
-  version: 2.6.2
+  version: 2.6.4
   epoch: 1
   description: "XML SAX Parser library written in C"
   copyright:
@@ -17,7 +17,7 @@ pipeline:
   - uses: fetch
     with:
       uri: https://downloads.sourceforge.net/project/expat/expat/${{package.version}}/expat-${{package.version}}.tar.bz2
-      expected-sha256: 9c7c1b5dcbc3c237c500a8fb1493e14d9582146dd9b42aa8d3ffb856a3b927e0
+      expected-sha256: 8dc480b796163d4436e6f1352e71800a774f73dbae213f1860b60607d2a83ada
 
   - name: Configure
     runs: |

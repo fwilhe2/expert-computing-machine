@@ -1,6 +1,6 @@
 package:
   name: bash
-  version: 5.2.21
+  version: 5.2.37
   epoch: 0
   description: "GNU bourne again shell"
   copyright:
@@ -17,8 +17,8 @@ environment:
 pipeline:
   - uses: fetch
     with:
-      uri: https://ftp.gnu.org/gnu/bash/bash-${{package.version}}.tar.gz
-      expected-sha256: c8e31bdc59b69aaffc5b36509905ba3e5cbb12747091d27b4b977f078560d5b8
+      uri: https://ftp.fu-berlin.de/unix/gnu/bash/bash-${{package.version}}.tar.gz
+      expected-sha256: 9599b22ecd1d5787ad7d3b7bf0c59f312b3396d1e281175dd1f8a4014da621ff
 
   - runs: |
       ./configure \

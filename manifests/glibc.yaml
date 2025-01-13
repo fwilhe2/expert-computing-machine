@@ -1,6 +1,6 @@
 package:
   name: glibc
-  version: 2.39
+  version: 2.40
   epoch: 0
   description: "the GNU C library"
   copyright:
@@ -48,7 +48,7 @@ pipeline:
   - uses: fetch
     with:
       uri: http://ftp.gnu.org/gnu/libc/glibc-${{package.version}}.tar.xz
-      expected-sha256: f77bd47cf8170c57365ae7bf86696c118adb3b120d3259c64c502d3dc1e2d926
+      expected-sha256: 19a890175e9263d748f627993de6f4b1af9cd21e03f080e4bfb3a1fac10205a2
 
   - name: 'Set up build directory'
     runs: |

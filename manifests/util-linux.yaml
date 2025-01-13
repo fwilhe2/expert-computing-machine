@@ -1,6 +1,6 @@
 package:
   name: util-linux
-  version: 2.39.4
+  version: 2.40.2
   epoch: 0
   description: Random collection of Linux utilities
   copyright:
@@ -40,7 +40,7 @@ var-transforms:
 pipeline:
   - uses: fetch
     with:
-      expected-sha256: 6c4f8723dafd41c39d93ecbf16509fc88c33cd5bd3277880ae5a1d97a014fd0e
+      expected-sha256: d78b37a66f5922d70edf3bdfb01a6b33d34ed3c3cafd6628203b2a2b67c8e8b3
       uri: https://www.kernel.org/pub/linux/utils/util-linux/v${{vars.major-minor}}/util-linux-${{package.version}}.tar.xz
 
   - runs: |

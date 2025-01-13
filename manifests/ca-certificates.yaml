@@ -1,6 +1,6 @@
 package:
   name: ca-certificates
-  version: "20240315"
+  version: "20241121"
   epoch: 0
   description: "CA certificates from the Mozilla trusted root program"
   copyright:
@@ -20,7 +20,7 @@ pipeline:
     with:
       repository: https://gitlab.alpinelinux.org/alpine/ca-certificates
       tag: ${{package.version}}
-      expected-commit: 09e5e43336e532ec8217ae3bfc912bcb7048f65a
+      expected-commit: 35fc750804a78979c392a151aee12ce69e618713
 
   - runs: |
       make CC="${{host.triplet.gnu}}-gcc"

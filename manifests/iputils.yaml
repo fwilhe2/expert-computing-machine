@@ -1,6 +1,6 @@
 package:
   name: iputils
-  version: "20240117"
+  version: "20240905"
   epoch: 0
   description: IP Configuration Utilities
   copyright:
@@ -20,7 +20,7 @@ environment:
 pipeline:
   - uses: git-checkout
     with:
-      expected-commit: 8372f355bdf7a9b0c79338dd8ef8464c00a5c4e2
+      expected-commit: 10b50784aae3fb75c96cdf9b1668916b49557dd5
       repository: https://github.com/iputils/iputils
       tag: ${{package.version}}
 
