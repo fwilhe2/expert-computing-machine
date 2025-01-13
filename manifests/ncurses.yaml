@@ -1,6 +1,6 @@
 package:
   name: ncurses
-  version: 6.5_p20240810
+  version: 6.5_p20241228
   epoch: 0
   description: "console display library"
   copyright:
@@ -28,7 +28,7 @@ pipeline:
   - uses: fetch
     with:
       uri: https://invisible-mirror.net/archives/ncurses/current/ncurses-${{vars.mangled-package-version}}.tgz
-      expected-sha512: 38c2525b4445f5efca4652770833ab370c449e19e7f9a4ccc912f52330ee2c682bab7ffb5dede1171d7cf3a1a703b8e4ac2d804b87a0044a13e9c47529ee0848
+      expected-sha512: 4ca73f46f598647dea24cbd89a5704eccdf7e52626f15f8271b08bf3bd2221f5bfb327c9b40532a6ebcc4cf1cd58e33bf4c149de9f8abaaafe1e2b0ce4cdf4d8
 
   - name: Configure
     runs: |

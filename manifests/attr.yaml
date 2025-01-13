@@ -23,7 +23,7 @@ pipeline:
     with:
       repository: https://git.savannah.nongnu.org/git/attr.git
       tag: v${{package.version}}
-      expected-commit: cba99e6932f7d532460011a25f413c61aefaa872
+      expected-commit: ee80fdbc11c351fe96bc54a20c2893dde7df8845
 
   - runs: |
       ./autogen.sh

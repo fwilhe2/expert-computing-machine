@@ -1,6 +1,6 @@
 package:
   name: systemd
-  version: "256.4"
+  version: "257.2"
   epoch: 0
   description: The systemd System and Service Manager
   copyright:
@@ -35,7 +35,7 @@ pipeline:
     with:
       repository: https://github.com/systemd/systemd
       tag: v${{package.version}}
-      expected-commit: 566210c272820ca6655800ce0d27b6ebc0aedc4c
+      expected-commit: 7fa3b5018bfffa176c77a2a5794dce792eebadcb
 
   - uses: meson/configure
 

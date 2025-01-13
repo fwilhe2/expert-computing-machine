@@ -1,6 +1,6 @@
 package:
   name: iptables
-  version: 1.8.10
+  version: 1.8.11
   epoch: 0
   description: Linux kernel firewall, NAT and packet mangling tools
   copyright:
@@ -28,7 +28,7 @@ pipeline:
     with:
       repository: https://git.netfilter.org/iptables
       tag: v${{package.version}}
-      expected-commit: 9b9d9a1b0c9ec85d406d7475961068628074ddcf
+      expected-commit: 0506bea1dcc8f12d94e7c32bf2fb04abb3fdd269
       depth: "-1"
 
   - runs: |
