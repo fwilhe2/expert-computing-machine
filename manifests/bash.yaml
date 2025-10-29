@@ -1,10 +1,14 @@
 package:
   name: bash
-  version: 5.2.21
+  version: "5.3"
   epoch: 0
   description: "GNU bourne again shell"
   copyright:
     - license: GPL-3.0-or-later
+  dependencies:
+    runtime:
+      - merged-bin
+      - wolfi-baselayout
 
 environment:
   contents:
@@ -13,19 +17,23 @@ environment:
       - busybox
       - ca-certificates-bundle
       - ncurses-dev
+  environment:
+    # Should be able to drop this once v5.3 is released
+    CFLAGS: -std=c17
 
 pipeline:
   - uses: fetch
     with:
-      uri: https://ftp.gnu.org/gnu/bash/bash-${{package.version}}.tar.gz
-      expected-sha256: c8e31bdc59b69aaffc5b36509905ba3e5cbb12747091d27b4b977f078560d5b8
+      uri: https://ftp.fu-berlin.de/unix/gnu/bash/bash-${{package.version}}.tar.gz
+      expected-sha256: 0d5cd86965f869a26cf64f4b71be7b96f90a3ba8b3d74e27e8e9d9d5550f31ba
 
   - runs: |
+      export CFLAGS="${CFLAGS} -DSYS_BASHRC='\"/etc/bash.bashrc\"' -DSYS_BASH_LOGOUT='\"/etc/bash.bash_logout\"'"
       ./configure \
         --host=${{host.triplet.gnu}} \
         --target=${{host.triplet.gnu}} \
         --prefix=/usr \
-        --bindir=/bin \
+        --bindir=/usr/bin \
         --sysconfdir=/etc \
         --without-libidn \
         --with-ssl=openssl \
@@ -40,7 +48,66 @@ pipeline:
 
   - uses: strip
 
-update:
-  enabled: true
-  release-monitor:
-    identifier: 166
+subpackages:
+  - name: bash-binsh
+    dependencies:
+      provider-priority: 60
+      runtime:
+        - bash
+        - merged-bin
+        - wolfi-baselayout
+    pipeline:
+      - runs: |
+          mkdir -p "${{targets.subpkgdir}}"/usr/bin
+          ln -s bash "${{targets.subpkgdir}}"/usr/bin/sh
+    test:
+      pipeline:
+        - runs: |
+            [ /usr/bin/sh -ef /usr/bin/bash ] || { echo "/usr/bin/sh is not same as /usr/bin/bash"; exit 1; }
+            sh --version
+            sh --help
+
+  - name: "bash-doc"
+    description: "bash documentation"
+    pipeline:
+      - uses: split/manpages
+      - uses: split/infodir
+      - runs: |
+          mkdir -p "${{targets.subpkgdir}}"/usr/share
+          mv "${{targets.destdir}}"/usr/share/doc "${{targets.subpkgdir}}"/usr/share/
+    test:
+      pipeline:
+        - uses: test/docs
+    dependencies:
+      runtime:
+        - merged-bin
+        - wolfi-baselayout
+
+  - name: "bash-dev"
+    description: "bash development headers"
+    pipeline:
+      - uses: split/dev
+      - runs: |
+          mkdir -p "${{targets.subpkgdir}}"/usr/bin
+          mv "${{targets.destdir}}"/usr/bin/bashbug "${{targets.subpkgdir}}"/usr/bin/
+    test:
+      pipeline:
+        - runs: |
+            bashbug --version
+            bashbug --help
+        - uses: test/pkgconf
+    dependencies:
+      runtime:
+        - merged-bin
+        - wolfi-baselayout
+
+  - name: "bash-builtins"
+    description: "bash loadable builtins"
+    pipeline:
+      - runs: |
+          mkdir -p ${{targets.subpkgdir}}/usr/lib
+          mv "${{targets.destdir}}/usr/lib/bash" ${{targets.subpkgdir}}/usr/lib/
+    dependencies:
+      runtime:
+        - merged-bin
+        - wolfi-baselayout
