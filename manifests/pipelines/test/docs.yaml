@@ -1,0 +1,11 @@
+name: docs
+
+inputs:
+  path-prefix:
+    description: "Prefix used for documentation."
+    default: "usr/share"
+
+pipeline:
+  - name: docs readability check
+    runs: |
+      echo foo
