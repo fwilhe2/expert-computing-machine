@@ -69,6 +69,18 @@ subpackages:
           mkdir -p "${{targets.subpkgdir}}"/lib
           mv "${{targets.destdir}}"/lib/libattr.so.* "${{targets.subpkgdir}}"/lib/
 
+  - name: attr-doc
+    description: attr docs
+    pipeline:
+      - uses: split/manpages
+    test:
+      pipeline:
+        - uses: test/docs
+    dependencies:
+      runtime:
+        - merged-lib
+        - wolfi-baselayout
+
 update:
   enabled: true
   release-monitor:
