@@ -2,7 +2,7 @@ import glob
 import json
 from pathlib import Path
 
-sbom_files = glob.glob("rootfs/var/lib/db/sbom/*.json")
+sbom_files = glob.glob("rootfs-amd64/var/lib/db/sbom/*.json")
 
 package_list = []
 
